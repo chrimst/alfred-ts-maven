@@ -13,18 +13,18 @@ interface AliyunMavenResult {
         version: string,
         repositoryId: string
     }[],
-    errorMsg:string,
+    errorMsg: string,
     successful: boolean
 }
 
 
 
 export class AliyunMaven {
-    public async main(key: string) {
+    public async main(key: string, repo: string) {
         const res = axios.get('https://developer.aliyun.com/artifact/aliyunMaven/searchArtifactByWords', {
             params: {
                 queryTerm: key,
-                repoId: 'all'
+                repoId: repo
             }
         }).then(res => res.data)
             .then(rs => r2Item(rs))
@@ -43,9 +43,9 @@ export class AliyunMaven {
 }
 
 const r2Item = (rs: AliyunMavenResult): AlfredItem[] => {
-    if(!rs.successful) {
+    if (!rs.successful) {
         return [{
-            title:'Wrong when querying',
+            title: 'Wrong when querying',
             subtitle: rs.errorMsg
         }]
     }
