@@ -80,31 +80,25 @@ const r2Item = (rs: MavenSearchResult): AlfredItem[] => {
         }
     })
 }
+export class CenterMaven {
 
-// main
-const args = process.argv[2]
-const q = qQ(args)
+    public async main(key: string) {
+        const res = axios.get('https://search.maven.org/solrsearch/select', {
+            params: {
+                q: qQ(key),
+                rows: 20,
+                wt: 'json'
+            }
+        }).then(res => res.data)
+            .then(rs => r2Item(rs))
+            .catch(err => [{
+                title: 'Error',
+                subtitle: err instanceof Error ? err.message : JSON.stringify(err)
+            }]
+            );
 
-const current = Date.now()
-const res = axios.get('https://search.maven.org/solrsearch/select', {
-    params: {
-        q: qQ(args),
-        rows: 20,
-        wt: 'json'
+        console.log(JSON.stringify({
+            items: await res
+        }))
     }
-}).then(res => res.data)
-    .then(rs => r2Item(rs))
-    .catch(err => [{
-        title: 'Error',
-        subtitle: err instanceof Error ? err.message : JSON.stringify(err)
-    }]
-    )
-
-
-const main = async () => {
-    console.log(JSON.stringify({
-        items: await res
-    }))
 }
-
-main()
