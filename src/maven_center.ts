@@ -10,8 +10,8 @@ interface MavenSearchResult {
             a: string,
             g: string,
             p: string,
-            v: string,
-            timestamp: Date,
+            latestVersion: string,
+            timestamp: number,
             versionCount: number
         }[],
         numFound: number,
@@ -30,6 +30,10 @@ interface Q {
 const qQ = (args: string) => {
     const argsV = args.split(":")
     const argsL = argsV.length
+
+    if (argsL == 1) {
+        return args;
+    }
 
     // the c:abcf or cf:abcsf 
     if ((argsV.indexOf("c") != -1 || argsV.indexOf("cf") != -1)
@@ -76,13 +80,15 @@ interface AlfredItem {
 // R2Item 
 const r2Item = (rs: MavenSearchResult): AlfredItem[] => {
     return rs?.response?.docs?.map(it => {
-        const mvn = `<dependency>\n  <groupId>${it.g}</groupId>\n  <artifactId>${it.a}</artifactId>\n  <version>${it.v}</version>\n</dependency>`;
-        const gradle = `compile '${it.g}:${it.a}:${it.v}'`;
+        const date = new Date(it.timestamp).toDateString()
+        const mvn = `<dependency>\n  <groupId>${it.g}</groupId>\n  <artifactId>${it.a}</artifactId>\n  <version>${it.latestVersion}</version>\n</dependency>`;
+        const gradle = `compile '${it.g}:${it.a}:${it.latestVersion}'`;
         return {
             uid: it.id,
-            title: `${it.id}:${it.v}`,
-            subtitle: `${it.timestamp} ${it.versionCount}`,
-            autocomplete: `${it.id}:${it.v}`,
+            title: `${it.id}:${it.latestVersion}`,
+            subtitle: `update:${date} ${it.versionCount}`,
+            autocomplete: `${it.id}:${it.latestVersion}`,
+            arg: mvn,
             mods: {
                 cmd: {
                     arg: mvn,
