@@ -11,3 +11,10 @@ $ alfred-ts-maven script-name -q queryString
     2. fullpath: (g:a:v)org.springframework:context:
     3. the class name: c:shortClassName or fc:fullClassName
     4. use tags: tags:sclaversionAbc
+
+## maven_aliyun
+   as far as now the keyword mode is supported and the repo used to query library can be specific
+
+```
+$ alfred-ts-maven aliyun -q queryString -r central(or others.)
+```
