@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 import axios from "axios"
+import { AlfredItem } from "./AlfredItem"
 
 
 // only keep the used
@@ -59,22 +60,6 @@ const qQ = (args: string) => {
         r.push(`${argsK[v]}:${argsV[v]}`)
     }
     return r.join(' AND ')
-}
-
-// work flow item
-interface AlfredItem {
-    uid?: string
-    type?: 'default' | 'file' | 'file:skipcheck'
-    title: string
-    subtitle?: string
-    icon?: { type?: 'fileicon' | 'filetype' | undefined, path: string }
-    valid?: boolean
-    match?: string
-    mods?: {}
-    arg?: string
-    text?: { copy?: string, largetype?: string }
-    quicklookurl?: string
-    autocomplete?: string
 }
 
 // R2Item 
