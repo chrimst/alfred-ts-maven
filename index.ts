@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 import axios from "axios"
 
 
@@ -84,6 +85,7 @@ const r2Item = (rs: MavenSearchResult): AlfredItem[] => {
 const args = process.argv[2]
 const q = qQ(args)
 
+const current = Date.now()
 const res = axios.get('https://search.maven.org/solrsearch/select', {
     params: {
         q: qQ(args),
@@ -92,14 +94,14 @@ const res = axios.get('https://search.maven.org/solrsearch/select', {
     }
 }).then(res => res.data)
     .then(rs => r2Item(rs))
-    .catch(err =>[{
-            title:'Error',
-            subtitle: err instanceof Error ? err.message : JSON.stringify(err)
-        }]
+    .catch(err => [{
+        title: 'Error',
+        subtitle: err instanceof Error ? err.message : JSON.stringify(err)
+    }]
     )
 
 
-const main = async ()=> {
+const main = async () => {
     console.log(JSON.stringify({
         items: await res
     }))
