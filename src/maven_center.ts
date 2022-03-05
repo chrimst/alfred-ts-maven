@@ -29,6 +29,22 @@ interface Q {
 
 const qQ = (args: string) => {
     const argsV = args.split(":")
+    const argsL = argsV.length
+
+    // the c:abcf or cf:abcsf 
+    if ((argsV.indexOf("c") != -1 || argsV.indexOf("cf") != -1)
+        && argsL == 2) {
+        return args;
+    }
+
+    if (argsV.indexOf("tags") != -1 && argsL == 2) {
+        return args
+    }
+
+    if (argsV.indexOf("a") != -1 && argsL == 2) {
+        return args;
+    }
+
     const argsK = ['g', 'a', 'v']
 
     if (argsV.length > argsK.length) {

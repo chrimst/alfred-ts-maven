@@ -2,7 +2,7 @@
 
 import commandLineArgs from 'command-line-args';
 import { AliyunMaven } from './maven_aliyun';
-import { CenterMaven, MavenCenter } from './maven_center';
+import { CenterMaven } from './maven_center';
 
 const optionDefinitions = [
     { name: 'src', type: String, defaultOption: true },
