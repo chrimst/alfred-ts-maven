@@ -1,5 +1,25 @@
 # alfred-ts-maven
 
+alfred-ts-maven is typescript based alfred plugin that can used to query the java library from
+repo hosted by maven center or aliyun.
+only three steps that you can use this plugin
+
+1. downlod the Gmvn.alfredworkflows and import the plugin into your Alfred. Auto upgrade is not supported yet and may works in later
+2. install this node cli globally by
+   ```node
+      npm install -g alfred-ts-maven
+   ```
+
+   may this lib is not uploaded to npm yet
+   you can clone this repo to your locally and install it by mannual
+   ```
+      cd `.../path/repo`
+      npm install -g .
+   ```
+3. use it
+
+# Customizition
+## basic command
 ```sh
 $ alfred-ts-maven script-name -q queryString
 ```
