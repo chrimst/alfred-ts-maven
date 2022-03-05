@@ -25,7 +25,9 @@ $ alfred-ts-maven script-name -q queryString
 ```
 
 ## maven_center
- the query string format can be
+[CENTRAL_API_GUIDE](https://central.sonatype.org/search/rest-api-guide/)
+
+the query string format can be
     
     1. keywords any
     2. fullpath: (g:a:v)org.springframework:context:
@@ -33,7 +35,9 @@ $ alfred-ts-maven script-name -q queryString
     4. use tags: tags:sclaversionAbc
 
 ## maven_aliyun
-   as far as now the keyword mode is supported and the repo used to query library can be specific
+[ALIYUN_REPO_SITE](https://developer.aliyun.com/mvn/search)
+
+as far as now the keyword mode is supported and the repo used to query library can be specific
 
 ```
 $ alfred-ts-maven aliyun -q queryString -r central(or others.)
