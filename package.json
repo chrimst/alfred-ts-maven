@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "axios": "^0.26.0",
-    "command-line-args": "^5.2.1",
-    "g": "^2.0.1"
+    "command-line-args": "^5.2.1"
   }
 }
